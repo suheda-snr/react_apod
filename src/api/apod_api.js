@@ -1,4 +1,4 @@
-const API_KEY = 'api_key'; // Replace 'api_key' with your own API key
+const API_KEY = 'DEMO_KEY'; // Replace 'DEMO_KEY' with your own API key
 const NASA_API_URL = `https://api.nasa.gov/planetary/apod?api_key=${API_KEY}`;
 
 export const fetchAPOD = async (date = '') => {
