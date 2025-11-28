@@ -1,56 +1,67 @@
-import React, { useEffect, useState } from 'react';
-import { fetchAPOD } from './api/apod_api';
+import React from 'react';
+import { useAPOD } from './hooks/useAPOD.js';
+import { CSS_CLASSES } from './constants/config.js';
+import LoadingSpinner from './components/LoadingSpinner.jsx';
+import ErrorDisplay from './components/ErrorDisplay.jsx';
+import MediaDisplay from './components/MediaDisplay.jsx';
+import ContentDisplay from './components/ContentDisplay.jsx';
+import DateNavigator from './components/DateNavigator.jsx';
 
 const APOD = () => {
-    const [data, setData] = useState(null);
-    const [selectedDate, setSelectedDate] = useState('');
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
+    const {
+        data,
+        selectedDate,
+        loading,
+        error,
+        showAll,
+        isoToday,
+        truncatedText,
+        shouldShowReadMore,
+        handleDateChange,
+        handleTodayClick,
+        handleYesterdayClick,
+        handleRandomClick,
+        toggleShowAll,
+        retryFetch
+    } = useAPOD();
 
-    // Function to fetch data
-    const fetchData = async (date = '') => {
-        setLoading(true);
-        try {
-            const result = await fetchAPOD(date);
-            setData(result);
-        } catch (error) {
-            setError(error);
-        } finally {
-            setLoading(false);
-        }
-    };
+    // Loading state
+    if (loading) {
+        return <LoadingSpinner />;
+    }
 
-    useEffect(() => {
-        fetchData(); // Call the fetchData function without a date
-    }, []);
+    // Error state
+    if (error) {
+        return <ErrorDisplay error={error} onRetry={retryFetch} />;
+    }
 
-    // Automatically fetch image when the selected date changes
-    useEffect(() => {
-        if (selectedDate) {
-            fetchData(selectedDate);
-        }
-    }, [selectedDate]);
-
-    const handleFetchByDate = () => {
-        fetchData(selectedDate); // Call fetchData with the selected date
-    };
-
-    if (loading) return <div>Loading...</div>;
-    if (error) return <div>Error: {error.message}</div>;
+    // Guard against missing data
+    if (!data) {
+        return null;
+    }
 
     return (
-        <div>
-            <h1>{data.title}</h1>
-            <p>{data.date}</p>
-            <img src={data.url} alt={data.title} />
-            <p>{data.explanation}</p>
-            <h2>Get Astronomy Picture of the Day for a Specific Date</h2>
-            <input
-                type="date"
-                value={selectedDate}
-                onChange={(e) => setSelectedDate(e.target.value)}
+        <>
+            <article className={CSS_CLASSES.APOD_CARD}>
+                <MediaDisplay data={data} />
+                <ContentDisplay
+                    data={data}
+                    showAll={showAll}
+                    truncatedText={truncatedText}
+                    shouldShowReadMore={shouldShowReadMore}
+                    onToggleShowAll={toggleShowAll}
+                />
+            </article>
+
+            <DateNavigator
+                selectedDate={selectedDate}
+                maxDate={isoToday}
+                onDateChange={handleDateChange}
+                onTodayClick={handleTodayClick}
+                onYesterdayClick={handleYesterdayClick}
+                onRandomClick={handleRandomClick}
             />
-        </div>
+        </>
     );
 };
 

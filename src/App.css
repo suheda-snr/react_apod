@@ -1,35 +1,330 @@
-#root {
+:root {
+  --max-width: 1100px;
+  --page-padding: 1.25rem;
+  --bg-top: #0b0b0d;
+  --bg-bottom: #121217;
+  --card-bg: rgba(255, 255, 255, 0.02);
+  --muted: rgba(224, 210, 210, 0.9);
+  --accent: #646cff;
+}
 
-  margin: 0 auto;
-  padding: 2rem;
+.App {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: calc(var(--page-padding) * 2) calc(var(--page-padding) * 1.5);
+  box-sizing: border-box;
+  background: linear-gradient(180deg, var(--bg-top), var(--bg-bottom) 60%);
+  color: var(--muted);
+}
+
+.header {
+  width: 100%;
+  max-width: var(--max-width);
+  margin-bottom: 0.5rem;
+}
+
+.header h2 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.25rem;
+  color: #cfeff0;
+  font-weight: 600;
+}
+
+.main {
+  width: 100%;
+  max-width: var(--max-width);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.date-navigator {
+  background: rgba(255, 255, 255, 0.03);
+  padding: 1.25rem;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(10px);
+}
+
+.nav-header {
   text-align: center;
-  background-color: black
+  margin-bottom: 1rem;
 }
 
-h1 {
-  color: rgb(224, 210, 210);
-  font-style: italic;
-  margin: 0px;
+.nav-header h4 {
+  margin: 0;
+  font-size: 1.1rem;
+  color: #cfeff0;
+  font-weight: 500;
 }
 
-h2 {
-  color: rgb(65, 130, 134);
+.nav-controls {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
-p {
-  color: rgb(224, 210, 210);
+.date-picker-group input[type="date"] {
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.05);
+  color: inherit;
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
 }
 
-img {
-  max-width: 60%;
+.date-picker-group input[type="date"]:focus {
+  outline: none;
+  border-color: var(--accent);
+  background: rgba(255, 255, 255, 0.08);
 }
 
-input {
-  padding: 15px;
-  border-radius: 5px;
+.quick-nav {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.nav-btn {
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.nav-btn:hover {
+  background: rgba(100, 108, 255, 0.1);
+  border-color: rgba(100, 108, 255, 0.3);
+  transform: translateY(-1px);
+}
+
+.nav-btn.random:hover {
+  background: rgba(168, 85, 247, 0.1);
+  border-color: rgba(168, 85, 247, 0.3);
+}
+
+.apod-card {
+  background: var(--card-bg);
+  padding: 0.8rem;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.apod-image {
+  width: calc(100% - 0.75rem);
+  max-height: 80vh;
+  object-fit: contain;
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+  display: block;
+  margin: 2rem 2rem 2rem;
+}
+
+.apod-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.apod-meta h1 {
+  font-size: 1.9rem;
+  margin: 0;
+}
+
+.apod-date {
+  color: rgba(200, 220, 220, 0.9);
+  font-weight: 500;
+  margin: 0.1rem 0 0.6rem 0;
+}
+
+.apod-explanation {
+  color: var(--muted);
+  line-height: 1.6;
+  font-size: 1rem;
+}
+
+.date-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 0.25rem;
+}
+
+.date-badge {
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.02));
+  padding: 0.5rem 0.8rem;
+  border-radius: 999px;
+  font-size: 0.95rem;
+  color: #eaf7f7;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.5) inset;
+}
+
+.credit {
+  color: rgba(180, 200, 200, 0.85);
+  font-size: 0.85rem;
+}
+
+.quick-actions button {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  color: inherit;
+  padding: 0.45rem 0.65rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 150ms ease, background 150ms ease;
+}
+
+.quick-actions button:hover {
+  transform: translateY(-3px);
+  background: rgba(100, 108, 255, 0.12);
+  border-color: var(--accent);
+}
+
+.link-like {
+  background: transparent;
   border: none;
+  color: var(--accent);
+  padding: 0;
+  cursor: pointer;
+  font-weight: 600;
 }
 
+.apod-explanation.expanded {
+  white-space: normal;
+}
+
+.spinner {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background: conic-gradient(var(--accent), transparent 60%);
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* playful subtle stars background overlay */
+.App::before {
+  content: '';
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px), radial-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 120px 120px, 60px 60px;
+  background-position: 0 0, 20px 40px;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.6;
+}
+
+/* ensure content sits above the overlay */
+.App>* {
+  position: relative;
+  z-index: 1;
+}
+
+/* Accessibility */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Error handling */
+.error-container {
+  text-align: center;
+  padding: 2rem;
+  background: var(--card-bg);
+  border-radius: 12px;
+  border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+.error-container h2 {
+  color: #fca5a5;
+  margin: 0 0 1rem 0;
+  font-size: 1.5rem;
+}
+
+.error-container p {
+  color: var(--muted);
+  margin: 0 0 1.5rem 0;
+}
+
+.retry-btn {
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  background: var(--accent);
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.retry-btn:hover {
+  background: #5a67d8;
+  transform: translateY(-1px);
+}
+
+/* Media container improvements */
+.apod-media-container {
+  width: 100%;
+}
+
+
+
+@media (min-width: 768px) {
+  .nav-controls {
+    justify-content: space-between;
+  }
+
+  .quick-nav {
+    gap: 0.75rem;
+  }
+}
+
+@media (min-width: 900px) {
+  .apod-card {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 0;
+  }
+
+  .apod-image {
+    width: 80%;
+  }
+
+  .apod-content {
+    width: 60%;
+  }
+}
+
+/* keep existing logo styles (if used elsewhere) */
 .logo {
   height: 6em;
   padding: 1.5em;
@@ -59,12 +354,4 @@ input {
   a:nth-of-type(2) .logo {
     animation: logo-spin infinite 20s linear;
   }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
 }
