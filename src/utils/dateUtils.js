@@ -1,4 +1,4 @@
-import { APOD_START_DATE, DEFAULT_LOCALE_OPTIONS } from '../constants/config.js';
+import { APOD_START_DATE, DEFAULT_LOCALE_OPTIONS } from '../constants/config';
 
 /**
  * Get today's date in ISO format (YYYY-MM-DD)

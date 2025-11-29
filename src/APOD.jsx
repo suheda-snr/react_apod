@@ -1,11 +1,11 @@
 import React from 'react';
-import { useAPOD } from './hooks/useAPOD.js';
-import { CSS_CLASSES } from './constants/config.js';
-import LoadingSpinner from './components/LoadingSpinner.jsx';
-import ErrorDisplay from './components/ErrorDisplay.jsx';
-import MediaDisplay from './components/MediaDisplay.jsx';
-import ContentDisplay from './components/ContentDisplay.jsx';
-import DateNavigator from './components/DateNavigator.jsx';
+import { useAPOD } from './hooks/useAPOD';
+import { CSS_CLASSES } from './constants/config';
+import LoadingSpinner from './components/LoadingSpinner';
+import ErrorDisplay from './components/ErrorDisplay';
+import MediaDisplay from './components/MediaDisplay';
+import ContentDisplay from './components/ContentDisplay';
+import DateNavigator from './components/DateNavigator';
 
 const APOD = () => {
     const {

@@ -1,13 +1,13 @@
 import React from 'react';
-import { formatDisplayDate } from '../utils/dateUtils.js';
-import { CSS_CLASSES } from '../constants/config.js';
+import { formatDisplayDate } from '../utils/dateUtils';
+import { CSS_CLASSES } from '../constants/config';
 
-const ContentDisplay = ({ 
-    data, 
-    showAll, 
-    truncatedText, 
-    shouldShowReadMore, 
-    onToggleShowAll 
+const ContentDisplay = ({
+    data,
+    showAll,
+    truncatedText,
+    shouldShowReadMore,
+    onToggleShowAll
 }) => {
     if (!data) return null;
 

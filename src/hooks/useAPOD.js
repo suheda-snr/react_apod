@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback, useMemo } from 'react';
-import { fetchAPOD } from '../api/apod_api.js';
-import { TEXT_PREVIEW_LENGTH } from '../constants/config.js';
-import { getISOToday, getISOYesterday, generateRandomDate } from '../utils/dateUtils.js';
+import { fetchAPOD } from '../api/apod_api';
+import { TEXT_PREVIEW_LENGTH } from '../constants/config';
+import { getISOToday, getISOYesterday, generateRandomDate } from '../utils/dateUtils';
 
 /**
  * Custom hook for managing APOD data and state
@@ -90,11 +90,11 @@ export const useAPOD = () => {
         error,
         showAll,
         isoToday,
-        
+
         // Computed values
         truncatedText,
         shouldShowReadMore,
-        
+
         // Handlers
         handleDateChange,
         handleTodayClick,

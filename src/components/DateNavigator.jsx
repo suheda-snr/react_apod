@@ -1,7 +1,7 @@
 import React from 'react';
-import { APOD_START_DATE, CSS_CLASSES } from '../constants/config.js';
+import { APOD_START_DATE, CSS_CLASSES } from '../constants/config';
 
-const DateNavigator = ({ 
+const DateNavigator = ({
     selectedDate,
     maxDate,
     onDateChange,
